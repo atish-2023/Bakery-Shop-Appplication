@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Explore</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Search Bar -->
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search bakery items..." 
+      (ionInput)="onSearchChange($event)"
+      class="custom-searchbar">
+    </ion-searchbar>
+  </div>
+  
+  <!-- Filter Section -->
+  <div class="filter-container">
+    <ion-segment (ionChange)="onCategoryChange($event)" value="all" class="category-segment">
+      <ion-segment-button value="all" class="category-button">
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button *ngFor="let category of categories" [value]="category.id" class="category-button">
+        <ion-label>{{ category.name }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    
+    <div class="sort-container">
+      <span class="sort-label">Sort By:</span>
+      <ion-select placeholder="Select" (ionChange)="onSortChange($event)" class="sort-select">
+        <ion-select-option value="newest">Newest</ion-select-option>
+        <ion-select-option value="price-low">Price: Low to High</ion-select-option>
+        <ion-select-option value="price-high">Price: High to Low</ion-select-option>
+        <ion-select-option value="rating">Top Rated</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+  
+  <!-- Product Grid -->
+  <div class="product-grid">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let product of filteredProducts">
+          <ion-card class="product-card" (click)="openProduct(product.id)">
+            <ion-img [src]="product.image" alt="{{ product.name }}"></ion-img>
+            <ion-card-content>
+              <ion-text color="dark">
+                <h3 class="product-title">{{ product.name }}</h3>
+              </ion-text>
+              <div class="product-info">
+                <ion-text color="primary">
+                  <p class="product-price">${{ product.default_price }}</p>
+                </ion-text>
+                <div class="rating">
+                  <ion-icon name="star" color="warning"></ion-icon>
+                  <span>{{ product.rating }}</span>
+                </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+  <!-- Load More Button -->
+  <div class="load-more-container" *ngIf="showLoadMore">
+    <ion-button expand="block" fill="outline" (click)="loadMore()">
+      Load More
+      <ion-icon slot="end" name="chevron-down"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title>Wishlist ({{ stats?.totalItems || 0 }} items)</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="onShareWishlist()">
+        <ion-icon name="share-social"></ion-icon>
+      </ion-button>
+      <ion-button (click)="onMoreOptions()">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Empty State -->
+  <div *ngIf="wishlistProducts.length === 0" class="empty-state">
+    <div class="empty-content">
+      <ion-icon name="heart" class="empty-icon"></ion-icon>
+      <h2>Your wishlist is empty</h2>
+      <p>Tap the heart to save your favorite bakery items</p>
+      <ion-button expand="block" color="primary" class="cta-button" (click)="onStartShopping()">
+        Start Shopping
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Wishlist Items Grid -->
+  <div *ngIf="wishlistProducts.length > 0" class="wishlist-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let product of wishlistProducts">
+          <app-wishlist-item [product]="product"></app-wishlist-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Insights Panel -->
+    <app-wishlist-insights 
+      [totalValue]="stats?.totalValue || '0.00'" 
+      [totalItems]="stats?.totalItems || 0" 
+      [categories]="stats?.categories || 0">
+    </app-wishlist-insights>
+  </div>
+</ion-content>

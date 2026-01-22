@@ -1,0 +1,131 @@
+.search-container {
+  padding: 16px;
+  background-color: #F9F4EE; // Very light cream background
+  
+  .custom-searchbar {
+    height: 48px; // Slightly bigger height
+    --background: #FFFFFF; // White background
+    --border-radius: 12px; // Rounded corners
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); // Soft shadow
+    --border: 1px solid #E5D5C8; // Border color
+    --placeholder-color: #9A8C83; // Placeholder color
+    --icon-color: #6E4B3A; // Search icon color
+    
+    .searchbar-input {
+      height: 48px;
+    }
+  }
+}
+
+.filter-container {
+  padding: 16px;
+  background-color: #F9F4EE; // Very light cream background
+  
+  .category-segment {
+    --background: transparent;
+    
+    .category-button {
+      --background: transparent;
+      --background-hover: transparent;
+      --background-checked: transparent;
+      --color: #4B2E1A; // Text color
+      --color-checked: #4B2E1A; // Selected text color
+      --indicator-color: #C58A54; // Underline color
+      --indicator-height: 3px; // Underline thickness
+      --indicator-transition: all 0.3s ease;
+      
+      ion-label {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+      
+      &::part(indicator) {
+        border-radius: 1.5px; // Rounded edges
+        width: 50%; // Short length
+        margin-left: 25%; // Center the indicator
+      }
+    }
+  }
+  
+  .sort-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    
+    .sort-label {
+      color: #4B2E1A; // Text color
+      font-weight: 600; // Font weight
+      font-size: 16px;
+      margin-right: 12px;
+    }
+    
+    .sort-select {
+      --placeholder-color: #7A6A58; // Dropdown text color
+      --icon-color: #6E4B3A; // Dropdown arrow color
+      
+      select {
+        color: #7A6A58;
+      }
+    }
+  }
+}
+
+.product-grid {
+  padding: 8px;
+  
+  .product-card {
+    margin: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    ion-img {
+      height: 120px;
+      object-fit: cover;
+    }
+    
+    ion-card-content {
+      padding: 8px;
+      
+      .product-title {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0 0 4px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .product-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .product-price {
+          font-weight: bold;
+          font-size: 16px;
+          margin: 0;
+        }
+        
+        .rating {
+          display: flex;
+          align-items: center;
+          
+          ion-icon {
+            margin-right: 2px;
+            font-size: 14px;
+          }
+          
+          span {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.load-more-container {
+  padding: 16px;
+}
